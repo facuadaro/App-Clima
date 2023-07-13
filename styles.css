@@ -1,0 +1,133 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-image: url(./pronostico/lluvioso.jpg);
+    transition-property: background-image;
+    transition-duration: 3s;
+}
+
+.features {
+    display: flex;
+    width: 100%;
+    padding: 10px 40px;
+    justify-content: center;
+    line-height: 40px;
+    text-align: left;
+}
+
+.features-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.km {
+    color: gray;
+    font-size: medium;
+}
+
+.iconos {
+    width: 15px;
+    height: 15px;
+}
+
+.bloq1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bloq2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bloq3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bloq4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bloq5 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-content {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 100px 0;
+    padding: 40px 0;
+    background: rgba(29,53, 87, 0.8);
+    color: white;
+    border-radius: 10px;
+    font-family: sans-serif;
+}
+
+.weather-content h1{
+    font-size: xx-large;
+}
+
+.result {
+    margin: 30px 0;
+    width: 100%;
+    font-size: x-large;
+}
+
+.get-weather {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.get-weather input {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.get-weather select {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+#buscador {
+    background: #33d6ae;
+    color: white;
+}
+
+#error {
+    color: red;
+    text-align: center;
+    display: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.pedidoCyP {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

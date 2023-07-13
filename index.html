@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>AlmaWeather</title>
+</head>
+<body>
+    <section class="weather-content">
+        <h1>ARPC Pronostico</h1>
+        <div class="result">
+            <h5>Clima en <span id="pais"></span></h5>
+            
+            <h2><span id="temp"></span>°C</h2>
+            <p>Max: <span id="max"></span>°C</p>
+            <p>Min: <span id="min"></span>°C</p>
+            <div class="features">
+                <div class="features-1">
+                    <div class="bloq1">
+                        <p>Humedad: <span id="humidity"></span></p>
+                        <img src="./pronostico/propiedades/humedad.png" alt="" class="iconos">
+                    </div>
+                    <div class="bloq2">
+                        <p>Lluvia: <span id="rain"></span></p>
+                        <img src="./pronostico/propiedades/lluviosidad.png" alt="" class="iconos">
+                    </div>
+                    <div class="bloq3">
+                        <p>Viento: <span id="wind"></span> <span class="km">km/h</span></p>
+                        <img src="./pronostico/propiedades/viento.png" alt="" class="iconos">
+                    </div>
+                    <div class="bloq4">
+                        <p>Sensasión Térmica: <span id="feels_like"></span></p>
+                        <img src="./pronostico/propiedades/sensaciontermica.png" alt="" class="iconos">
+                    </div>
+                    <div class="bloq5">
+                        <p>Presión: <span id="pressure"></span></p>
+                        <img src="./pronostico/propiedades/presion.png" alt="" class="iconos">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <p class="pedidoCyP">Agregue ciudad y pais</p>
+        </div>
+        <form action="" method="POST" class="get-weather">
+            <input type="text" name="city" id="city" placeholder="City">
+            <input type="submit" name="" id="buscador" value="Get Weather">
+            <p id="error">Debe completar todos los campos</p>
+        </form>
+    </section>
+
+
+
+    <script src="/index.js"></script>
+</body>
+</html>
