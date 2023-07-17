@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <title>AlmaWeather</title>
 </head>
+
 <body>
     <section class="weather-content">
-        <h1>ARPC Pronostico</h1>
+        <p class="pedidoCyP">Agregue ciudad y pais</p>
+        <form action="" method="POST" class="get-weather">
+            <input type="text" name="city" id="city" placeholder="City">
+            <input type="submit" name="" id="buscador" value="Get Weather">
+            <p id="error">Debe completar todos los campos</p>
+        </form>
+        <!-- <h1>ARPC Pronostico</h1> -->
         <div class="result">
             <h5>Clima en <span id="pais"></span></h5>
-            
+
             <h2><span id="temp"></span>°C</h2>
             <p>Max: <span id="max"></span>°C</p>
             <p>Min: <span id="min"></span>°C</p>
             <div class="features">
                 <div class="features-1">
                     <div class="bloq1">
-                        <p>Humedad: <span id="humidity"></span></p>
+                        <p>Humedad: <span id="humidity"></span><span class="km"> %</span></p>
                         <img src="./pronostico/propiedades/humedad.png" alt="" class="iconos">
                     </div>
                     <div class="bloq2">
-                        <p>Lluvia: <span class="extra" id="rain"></span></p>
+                        <p>Lluvia: <span class="extra" id="rain"></span><span class="km"> %</span></p>
                         <img src="./pronostico/propiedades/lluviosidad.png" alt="" class="iconos">
                     </div>
                     <div class="bloq3">
@@ -37,20 +45,43 @@
                         <p>Presión: <span id="pressure"></span><span class="km"> mb</span></p>
                         <img src="./pronostico/propiedades/presion.png" alt="" class="iconos">
                     </div>
+                    <div class="next-days">
+                        <div class="day">
+                            <p class="date" id="nextday1"></p>
+                            <div class="forecastinfo" id="time1">
+                                <p class="forecast-max" id="tempmax1"></p><span>°</span>
+                                <span class="separador">/</span>
+                                <p class="forecast-min" id="tempmin1"></p><span>°</span>
+                            </div>
+                            <p class="forecastwind" id="wind1"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind1"></span><span class="km">km/h</span></p>
+                        </div>
+                        <div class="day">
+                            <p class="date" id="nextday2"></p>
+                            <div class="forecastinfo" id="time2">
+                                <p class="forecast-max" id="tempmax2"></p><span>°</span>
+                                <span class="separador">/</span>
+                                <p class="forecast-min" id="tempmin2"></p><span>°</span>
+                            </div>
+                            <p class="forecastwind" id="wind2"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind2"></span><span class="km">km/h</span></p>
+                        </div>
+                        <div class="day">
+                            <p class="date" id="nextday3"></p>
+                            <div class="forecastinfo" id="time3">
+                                <p class="forecast-max" id="tempmax3"></p><span>°</span>
+                                <span class="separador">/</span>
+                                <p class="forecast-min" id="tempmin3"></p><span>°</span>
+                            </div>
+                            <p class="forecastwind" id="wind3"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind3"></span><span class="km">km/h</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <br>
-            <p class="pedidoCyP">Agregue ciudad y pais</p>
-        </div>
-        <form action="" method="POST" class="get-weather">
-            <input type="text" name="city" id="city" placeholder="City">
-            <input type="submit" name="" id="buscador" value="Get Weather">
-            <p id="error">Debe completar todos los campos</p>
-        </form>
     </section>
 
 
 
     <script src="/index.js"></script>
 </body>
+
 </html>
