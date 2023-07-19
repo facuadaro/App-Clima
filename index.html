@@ -17,34 +17,41 @@
                 <input type="submit" name="" id="buscador" value="Get Weather">
                 <p id="error">Debe completar todos los campos</p>
             </form>
-            <!-- <h1>ARPC Pronostico</h1> -->
             <div class="result">
                 <div class="container-principal">
-                    <h5>Clima en <span id="pais"></span></h5>        
-                    <h2><span id="temp"></span>°C</h2>
-                    <p>Max: <span id="max"></span>°C</p>
-                    <p>Min: <span id="min"></span>°C</p>
+                    <h5>Clima en <span id="pais"></span></h5>      
+                    <div class="container-secundario">
+                        <div class="datos">
+                            <h2><span id="temp"></span>°C</h2>
+                            <p>Max: <span id="max"></span>°C</p>
+                            <p>Min: <span id="min"></span>°C</p>
+                        </div>
+                        <div class="icono-datos-principal">
+                            <img src="" alt="" id="icono-condition-principal">
+                            <p id="text-condition"></p>
+                        </div>
+                    </div>  
                 </div>
                 <div class="features">
                     <div class="features-1">
                         <div class="bloq">
-                            <p>Humedad: <span id="humidity"></span><span class="km"> %</span></p>
+                            <p>Humedad: <span id="humidity"></span><span class="km"> %</span></span><span class="km-resp"> %</span></p>
                             <img src="./pronostico/propiedades/humedad.png" alt="" class="iconos">
                         </div>
                         <div class="bloq">
-                            <p>Lluvia: <span class="extra" id="rain"></span><span class="km"> %</span></p>
+                            <p>Lluvia: <span class="extra" id="rain"></span><span class="km"> %</span></span><span class="km-resp"> %</span></p>
                             <img src="./pronostico/propiedades/lluviosidad.png" alt="" class="iconos">
                         </div>
                         <div class="bloq">
-                            <p>Viento: <span id="wind"></span> <span class="km">km/h</span></p>
+                            <p>Viento: <span id="wind"></span> <span class="km">km/h</span></span><span class="km-resp">km/h</span></p>
                             <img src="./pronostico/propiedades/viento.png" alt="" class="iconos">
                         </div>
                         <div class="bloq">
-                            <p>Sensasión Térmica: <span id="feels_like"></span><span class="km"> C°</span></p>
+                            <p>Sensasión Térmica: <span id="feels_like"></span><span class="km"> C°</span></span><span class="km-resp"> C°</span></p>
                             <img src="./pronostico/propiedades/sensaciontermica.png" alt="" class="iconos">
                         </div>
                         <div class="bloq">
-                            <p>Presión: <span id="pressure"></span><span class="km"> mb</span></p>
+                            <p>Presión: <span id="pressure"></span><span class="km"> mb</span></span><span class="km-resp"> mb</span></p>
                             <img src="./pronostico/propiedades/presion.png" alt="" class="iconos">
                         </div>
                     </div>
@@ -57,6 +64,10 @@
                                     <span class="separador">/</span>
                                     <p class="forecast-min" id="tempmin1"></p><span>°</span>
                                 </div>
+                                <div class="icono-datos">
+                                    <img src="" id="icono-condition-secondary1">
+                                    <p class="data-condition" id="text-condition1"></p>
+                                </div>
                                 <p class="forecastwind" id="wind1"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind1"></span><span class="km-resp">km/h</span></p>
                                 <span class="km">km/h</span>
                             </div>
@@ -66,6 +77,10 @@
                                     <p class="forecast-max" id="tempmax2"></p><span>°</span>
                                     <span class="separador">/</span>
                                     <p class="forecast-min" id="tempmin2"></p><span>°</span>
+                                </div>
+                                <div class="icono-datos">
+                                    <img src="" id="icono-condition-secondary2"/>
+                                    <p class="data-condition" id="text-condition2"></p>
                                 </div>
                                 <p class="forecastwind" id="wind2"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind2"></span><span class="km-resp">km/h</span></p>
                                 <span class="km">km/h</span>
@@ -77,6 +92,10 @@
                                     <span class="separador">/</span>
                                     <p class="forecast-min" id="tempmin3"></p><span>°</span>
                                 </div>
+                                <div class="icono-datos">
+                                    <img src="" id="icono-condition-secondary3"/>
+                                    <p class="data-condition" id="text-condition3"></p>
+                                </div>
                                 <p class="forecastwind" id="wind3"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind3"></span><span class="km-resp">km/h</span></p>
                                 <span class="km">km/h</span>
                             </div>
@@ -86,6 +105,10 @@
                                     <p class="forecast-max" id="tempmax4"></p><span>°</span>
                                     <span class="separador">/</span>
                                     <p class="forecast-min" id="tempmin4"></p><span>°</span>
+                                </div>
+                                <div class="icono-datos">
+                                    <img src="" id="icono-condition-secondary4"/>
+                                    <p class="data-condition" id="text-condition4"></p>
                                 </div>
                                 <p class="forecastwind" id="wind4"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind4"></span><span class="km-resp">km/h</span></p>
                                 </span><span class="km">km/h</span>
@@ -97,6 +120,10 @@
                                     <span class="separador">/</span>
                                     <p class="forecast-min" id="tempmin5"></p><span>°</span>
                                 </div>
+                                <div class="icono-datos">
+                                    <img src="" id="icono-condition-secondary5"/>
+                                    <p class="data-condition" id="text-condition5"></p>
+                                </div>
                                 <p class="forecastwind" id="wind5"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind5"></span><span class="km-resp">km/h</span></p>
                                 </span><span class="km">km/h</span>
                             </div>
@@ -106,6 +133,10 @@
                                     <p class="forecast-max" id="tempmax6"></p><span>°</span>
                                     <span class="separador">/</span>
                                     <p class="forecast-min" id="tempmin6"></p><span>°</span>
+                                </div>
+                                <div class="icono-datos">
+                                    <img src="" id="icono-condition-secondary6"/>
+                                    <p class="data-condition" id="text-condition6"></p>
                                 </div>
                                 <p class="forecastwind" id="wind6"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind6"></span><span class="km-resp">km/h</span></p>
                                 <span class="km">km/h</span>
@@ -117,20 +148,19 @@
                                     <span class="separador">/</span>
                                     <p class="forecast-min" id="tempmin7"></p><span>°</span>
                                 </div>
+                                <div class="icono-datos">
+                                    <img src="" id="icono-condition-secondary7"/>
+                                    <p class="data-condition" id="text-condition7"></p>
+                                </div>
                                 <p class="forecastwind" id="wind7"><img src="./pronostico/propiedades/viento.png" alt="" class="iconos"><span class="next-wind-ico" id="datewind7"></span><span class="km-resp">km/h</span></p>
                                 <span class="km">km/h</span>
                             </div>
                         </div>
-                    </div>
-                        
-                    
+                    </div>                           
                 </div>
                 <br>
         </section>
     </div>
-
-
-
     <script src="/index.js"></script>
 </body>
 

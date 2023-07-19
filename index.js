@@ -44,9 +44,52 @@ function callAPI(city) {
             } else {
                 console.log(data)
                 showWeather(data)
+                conditionData(data)
                 nextDaysFunction(data)
             }
         })
+}
+
+
+function currentCondition(data) {
+    return data.current.condition.text
+}
+
+
+function conditionData(data) {
+    let condition = document.getElementById('text-condition')    
+    let iconoConditionPrincipal = document.getElementById('icono-condition-principal')
+    const iconosClima = {
+        "Overcast": "/pronostico/iconos/header/nublado.png",
+        "Sunny": "/pronostico/iconos/header/soleado.png",
+        "Moderate rain": "/pronostico/iconos/header/lluvioso.png",
+        "Partly cloudy": "/pronostico/iconos/header/parcialmente-nublado.png",
+        "Patchy rain possible": "/pronostico/iconos/header/lluvioso-con-sol.png",
+        "Heavy rain": "/pronostico/iconos/header/fuerte-lluvia.png"
+    };
+    const conditionClima = currentCondition(data)
+    console.log(conditionClima)
+    
+    condition.textContent = data.current.condition.text
+
+    if(iconosClima.hasOwnProperty(conditionClima)){
+        iconoConditionPrincipal.src = iconosClima[conditionClima]
+    } else {
+        let err = document.createElement('p')
+        err.textContent = "No se encontro un icono"
+        console.error(`No se encontró un icono para la condición del clima: ${conditionClima}`);
+    }
+    for (let i = 0; i < 8; i++) {
+        let nextdays = data.forecast.forecastday[i].day.condition.text
+        let textConditions = document.getElementById(`text-condition${i + 1}`)
+        textConditions.textContent = nextdays;
+
+        if (iconosClima.hasOwnProperty(nextdays)) { // Verificamos si la condición del siguiente día está en el objeto iconosClima
+            let iconoConditionSecondary = document.getElementById(`icono-condition-secondary${i + 1}`)
+            iconoConditionSecondary.src = iconosClima[nextdays]; // Establecemos el icono correspondiente para el siguiente día
+        }
+    }
+
 }
 
 const currentDate = new Date(); // Obtiene la fecha actual
