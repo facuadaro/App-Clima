@@ -1,5 +1,6 @@
 const result = document.querySelector('.result')
 const contenedor = document.querySelector('.weather-content')
+const header = document.querySelector(".contacto")
 const form = document.querySelector('.get-weather')
 const nameCity = document.getElementById('city')
 const nameCountry = document.getElementById('country')
@@ -17,7 +18,8 @@ const wind = document.getElementById('wind')
 const fmax = document.querySelector('.forecast-max')
 const fmin = document.getElementById('forecast-min')
 const screenWidth = window.innerWidth;
-const features = document.querySelector('.features-2')
+const Logo = document.getElementById('Logo-Empresa')
+const manito = document.getElementById('manito')
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -35,7 +37,7 @@ form.addEventListener('submit', (e) => {
 
 
 function callAPI(city) {
-    const url = `https://api.weatherapi.com/v1/forecast.json?key=6e2e58017387443484a211202231407&q=${city}&days=8&aqi=no`
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=6e2e58017387443484a211202231407&q=${city}&days=4&aqi=no`
 
     fetch(url)
         .then(res => res.json())
@@ -87,12 +89,14 @@ const condicionesTraducidas = {
     "Thunderstorm": "Tormentas",
     "Light rain": "Lluvia leve",
     "Heavy rain": "Lluvia fuerte",
+    "Torrential rain": "Lluvia torrencial",
     "Mist": "Neblina",
     "Freezing fog": "Neblina helada",
     "Snowy": "Nevado",
+    "Light snow": "Nieve ligera",
     "Heavy snow": "Fuertes nevadas",
     "Moderate snow": "Nieve moderada",
-    "Moderate or heavy snow showers": "Chubascos de nieve moderados o fuertes"
+    "Moderate or heavy snow showers": "Chubascos de nieve irregulares"
 };
 
 
@@ -118,12 +122,14 @@ function conditionData(data) {
         "Fog": "/pronostico/iconos/header/niebla.png",
         "Foggy": "/pronostico/iconos/header/neblina.png",
         "Rainy": "/pronostico/iconos/header/lluvioso-con-sol.png",
+        "Torrential rain": "/pronostico/iconos/header/fuerte-lluvia.png",
         "Patchy rain possible": "/pronostico/iconos/header/lluvioso-con-sol.png",
         "Thunderstorm": "/pronostico/iconos/header/fuerte-lluvia.png",
         "Heavy rain": "/pronostico/iconos/header/fuerte-lluvia.png",
         "Mist": "/pronostico/iconos/header/neblina.png",
         "Freezing fog": "/pronostico/iconos/header/neblina-helada.png",
         "Snowy": "/pronostico/iconos/header/moderate-snow.png",
+        "Light snow": "/pronostico/iconos/header/light-snow.png",
         "Heavy snow": "/pronostico/iconos/header/heavy-snow.png",
         "Moderate snow": "/pronostico/iconos/header/moderate-snow.png",
         "Moderate or heavy snow showers": "/pronostico/iconos/header/moderate-snow.png"
@@ -148,12 +154,13 @@ function conditionData(data) {
         condition.textContent = conditionTraducida;
     }
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 3; i++) {
         let nextdays = data.forecast.forecastday[i].day.condition.text
         let textConditions = document.getElementById(`text-condition${i + 1}`)
 
         const nextdaysTraducida = condicionesTraducidas[nextdays] || nextdays;
         textConditions.textContent = nextdaysTraducida;
+
 
         if (iconosClima.hasOwnProperty(nextdays)) { // Verificamos si la condición del siguiente día está en el objeto iconosClima
             let iconoConditionSecondary = document.getElementById(`icono-condition-secondary${i + 1}`)
@@ -176,6 +183,10 @@ function conditionData(data) {
 
 
 function showWeather(data) {
+
+    const currentDate = new Date(); // Obtiene la fecha actual
+    const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
     pais.textContent = data.location.name
     temp.textContent = data.current.temp_c
     tempMax.textContent = data.forecast.forecastday[0].day.maxtemp_c
@@ -190,24 +201,32 @@ function showWeather(data) {
         rain.textContent = '0.0';
     }
 
-    data.forecast.forecastday.slice(1, 8).forEach((forecast, index) => {
-        const dateString = forecast.date;
-        const dateObj = new Date(dateString);
-        const dayNum = dateObj.getDay();
-        const dayName = dayNames[dayNum];
-        const days = document.getElementById(`nextday${index + 1}`)
-        days.textContent = dayName;
-    });
+    // Mostrar el día actual
+    const currentDayName = dayNames[currentDate.getDay()];
+    const currentDayElement = document.getElementById('nextday1');
+    currentDayElement.textContent = currentDayName;
+
+    // Mostrar los dos días siguientes
+    for (let i = 1; i < 3; i++) {
+        const nextDate = new Date();
+        nextDate.setDate(currentDate.getDate() + i);
+        const nextDayName = dayNames[nextDate.getDay()];
+        const nextDayElement = document.getElementById(`nextday${i + 1}`);
+        nextDayElement.textContent = nextDayName;
+    }
+
 
     if (pais.value === '' && screenWidth > 768) {
-        features.style.display = "none"
+        result.style.display = "none"
     }else{
-        features.style.display = "flex"
+        Logo.style.display = "none"
+        result.style.display = "flex"
     }
     
     if(pais.value === '' && screenWidth < 768){
         contenedor.style.background = "transparent"
     }else if(screenWidth < 768){
+        header.style.background = "rgba(29, 53, 87, 0.5)"
         contenedor.style.background = "rgba(29, 53, 87, 0.5)"
     }
 }
@@ -230,7 +249,7 @@ function cambiaFondo(data) {
         document.body.style.backgroundImage = "url('/pronostico/bajo-cero.jpg')"
         return;
     }else if(data.current.temp_c <= 2 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/bajo-cero-celular.jpg')"
+        document.body.style.backgroundImage = "url('/pronostico/frío-celular.jpg')"
         return;
     }
     if (data.current.temp_c <= 10 && data.forecast.forecastday[0].day.daily_will_it_rain < 1 && screenWidth > 768) {
@@ -243,8 +262,8 @@ function cambiaFondo(data) {
     if (data.current.temp_c > 10 && data.current.temp_c < 18 && screenWidth > 768) {
         document.body.style.backgroundImage = "url('/pronostico/frío.jpg')"
         return;
-    }else if(data.current.temp_c > 10 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/frío-celular.jpg')"
+    }else if(data.current.temp_c > 10 && data.current.temp_c < 18 && screenWidth < 768){
+        document.body.style.backgroundImage = "url('/pronostico/fresco-celular.jpg')"
         return;
     }
     if (data.current.temp_c >= 18 && data.current.temp_c < 25 && screenWidth > 768) {
