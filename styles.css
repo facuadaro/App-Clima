@@ -7,6 +7,7 @@
 
 html, body {
     height: 100%;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -14,11 +15,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(./pronostico/lluvioso.jpg);
+    background-image: url(./pronostico/principal.jpg);
     transition-property: background-image;
     transition-duration: 3s;
     text-align: center;
     height: auto;
+    background-size: cover;
 }
 
 header {
@@ -26,12 +28,28 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 header a {
     text-decoration: none;
     color: white;
     font-size: small;
+}
+
+
+#temp {
+    color: wheat;
+    /* font-size: xx-large; */
+    /* font-weight: 700; */
+}
+
+#min, .forecast-min {
+    color: lightblue;
+}
+
+#max, .forecast-max {
+    color: rgb(255, 98, 66);
 }
 
 .features {
@@ -44,7 +62,7 @@ header a {
 }
 
 .features p {
-    padding: 10px 0;
+    /* padding: 10px 0; */
 }
 
 
@@ -72,7 +90,7 @@ header a {
 
 .forecastwind {
     margin: 0;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     padding: 0;
     width: 100%;
     display: flex;
@@ -90,11 +108,8 @@ header a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 100px;
-}
-
-#pressure {
-    font-size: large;
+    padding: 5px 60px;
+    font-size: medium;
 }
 
 .container-principal {
@@ -104,6 +119,10 @@ header a {
     justify-content: center;
     align-items: center;
     margin: 10px 0;
+}
+
+.container-datos{
+    text-shadow: black 1px 1px 1px;
 }
 
 .container-secundario {
@@ -118,6 +137,13 @@ header a {
     display: flex;
     flex-direction: column;
     text-align: left;
+    font-size: large;
+}
+
+.minmax {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .icono-datos-principal {
@@ -128,6 +154,10 @@ header a {
     margin-left: 100px;
 }
 
+.icono-datos {
+    width: 300px;
+}
+
 .icono-datos img {
     object-fit: fill;
     width: 40px;
@@ -135,7 +165,8 @@ header a {
 
 #text-condition {
     font-size: large;
-    color: #a1a0a0;
+    color: #fff;
+    padding: 5px 0;
 }
 
 #icono-condition-principal {
@@ -188,7 +219,7 @@ header a {
     justify-content: center;
     padding: 40px 0;
     align-items: center;
-    width: 90%;
+    width: 100%;
     text-shadow: black 1px 1px 1px;
 }
 
@@ -213,6 +244,10 @@ header a {
     color: white;
 }
 
+.date1 {
+    display: none;
+}
+
 #error {
     color: red;
     text-align: center;
@@ -230,6 +265,7 @@ header a {
 
 .next-days {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 30px 0 0 0;
@@ -238,15 +274,15 @@ header a {
 
 .day {
     display: flex;
-    flex-direction: column;
-    max-width: 200px;
+    padding: 10px 10px;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
     text-align: center;
     border-style: solid;
     border-width: 1px;
     border-radius: 3px;
-    margin: 0 7px;
+    margin: 10px 7px;
     font-size: 16px;
 }
 
@@ -255,13 +291,19 @@ header a {
 }
 
 .date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     font-size: large;
+    width: 100px;
 }
 
 .forecastinfo {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 80px;
     font-size: 20px;
     /* font-size: medium; */
 }
@@ -286,9 +328,9 @@ header a {
     justify-content: center;
     align-items: center;
     font-size: medium;
-    line-height: 20px;
-    height: 50px;
-    color: #a1a0a0;
+    /* line-height: 20px; */
+    /* height: 50px; */
+    color: #fff;
 }
 
 
@@ -296,7 +338,9 @@ header a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
+    width: 100px;
+    /* width: 100%; */
     /* border-style: solid; */
 }
 
@@ -365,7 +409,7 @@ header a {
     }
 
     .forecastwind {
-        margin-bottom: 10px;
+        /* margin-bottom: 10px; */
     }
 
 }
@@ -416,6 +460,7 @@ header a {
         border-width: 1px;
         border-radius: 3px;
         animation: aparicionDerecha 1s forwards ease-out;
+        padding: 10px 20px;
     }
 
     .features-2 {
@@ -436,8 +481,8 @@ header a {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0;
-        
+        padding: 5px 0;
+        font-size: small;
     }
 
     
@@ -453,6 +498,10 @@ header a {
 
     html, body {
         height: auto;
+    }
+
+    .icono-datos {
+        width: 120px;
     }
     
     .icono-datos-principal {        
@@ -494,11 +543,12 @@ header a {
     header{
         width: 100%;
         padding-top: 10px;
+        margin-bottom: 0;
     }
 
     .get-weather {
         /* height: auto; */
-        padding: 0;
+        padding: 0 10px;
         align-items: center;
         justify-content: center;
     }
@@ -507,14 +557,17 @@ header a {
     
     .get-weather input {
         width: 100%;
-        /* height: auto; */
     }
 
+    .get-weather select {
+
+    }
 
     .icono-datos img {
-        object-fit: cover;
+        display: block;
+        object-fit: fill;
         width: 30px;
-        height: max-content;
+        /* height: max-content; */
     }
 
     .data-condition {
@@ -568,6 +621,9 @@ header a {
         align-items: center;
     }
 
+    .datos {
+        font-size: medium;
+    }
 
     .datos-resp {
         display: flex;
@@ -586,4 +642,8 @@ header a {
         width: 60px;
     }
 
+    .forecast-max, .forecast-min {
+        font-size: medium;
+        font-weight: 600;
+    }
 }

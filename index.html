@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <title>AlmaWeather</title>
+    <link rel="shortcut icon" href="pronostico/head.png">
 </head>
 
 <body>
@@ -27,16 +28,17 @@
                     <h5>Clima en <span id="pais"></span></h5>
                     <div class="container-secundario">
                         <div class="datos">
-                            <h2><span id="temp"></span>°C</h2>
-                            <p>Max: <span id="max"></span>°C</p>
-                            <p>Min: <span id="min"></span>°C</p>
+                            <h2>Temp: <span id="temp"></span> °C</h2>
+                            <div class="minmax">
+                                <h4>Max: <span id="max"></span> °C</h4>
+                                <h4>Min: <span id="min"></span> °C</h4>
+                            </div>
                         </div>
                         <div class="icono-datos-principal">
                             <img src="" alt="" id="icono-condition-principal">
                             <p id="text-condition"></p>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="features">
@@ -62,7 +64,7 @@
                         <img src="./pronostico/propiedades/sensaciontermica.png" alt="" class="iconos">
                     </div>
                     <div class="bloq">
-                        <p>Presión: <span id="pressure"     ></span><span class="km"> mb</span></span><span class="km-resp">
+                        <p>Presión: <span id="pressure"></span><span class="km"> mb</span></span><span class="km-resp">
                                 mb</span></p>
                         <img src="./pronostico/propiedades/presion.png" alt="" class="iconos">
                     </div>
@@ -70,14 +72,15 @@
                 <div class="features-2">
                     <div class="next-days">
                         <div class="day">
-                            <p class="date" id="nextday1"></p>
+                            <p class="date">Hoy</p>
+                            <p class="date1" id="nextday1"></p>
                             <div class="forecastinfo" id="time1">
                                 <p class="forecast-max" id="tempmax1"></p><span>°</span>
                                 <span class="separador">/</span>
                                 <p class="forecast-min" id="tempmin1"></p><span>°</span>
                             </div>
                             <div class="icono-datos">
-                                <img src="" id="icono-condition-secondary1">
+                                <img src="" class="icono-secondary" id="icono-condition-secondary1">
                                 <p class="data-condition" id="text-condition1"></p>
                             </div>
                             <div class="wind-statics">
@@ -96,7 +99,7 @@
                                 <p class="forecast-min" id="tempmin2"></p><span>°</span>
                             </div>
                             <div class="icono-datos">
-                                <img src="" id="icono-condition-secondary2" />
+                                <img src="" class="icono-secondary" id="icono-condition-secondary2" />
                                 <p class="data-condition" id="text-condition2"></p>
                             </div>
                             <div class="wind-statics">
@@ -115,7 +118,7 @@
                                 <p class="forecast-min" id="tempmin3"></p><span>°</span>
                             </div>
                             <div class="icono-datos">
-                                <img src="" id="icono-condition-secondary3" />
+                                <img src="" class="icono-secondary" id="icono-condition-secondary3" />
                                 <p class="data-condition" id="text-condition3"></p>
                             </div>
                             <div class="wind-statics">

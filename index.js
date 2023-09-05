@@ -85,14 +85,19 @@ const condicionesTraducidas = {
     "Fog": "Niebla",
     "Foggy": "Neblinoso",
     "Rainy": "Lluvioso",
+    "Blizzard": "Tormenta de nieve",
     "Patchy rain possible": "Posible lluvia irregular",
     "Thunderstorm": "Tormentas",
     "Light rain": "Lluvia leve",
+    "Light rain shower": "Lluvia ligera",
     "Heavy rain": "Lluvia fuerte",
     "Torrential rain": "Lluvia torrencial",
+    "Moderate or heavy rain shower": "Lluvia irregular",
     "Mist": "Neblina",
     "Freezing fog": "Neblina helada",
     "Snowy": "Nevado",
+    "Patchy heavy snow": "Nieve intensa irregular",
+    "Patchy light rain with thunder": "Lluvia irregular con truenos",
     "Light snow": "Nieve ligera",
     "Heavy snow": "Fuertes nevadas",
     "Moderate snow": "Nieve moderada",
@@ -121,6 +126,7 @@ function conditionData(data) {
         "Patchy moderate snow": "/pronostico/iconos/header/moderate-snow.png",
         "Fog": "/pronostico/iconos/header/niebla.png",
         "Foggy": "/pronostico/iconos/header/neblina.png",
+        "Blizzard": "/pronostico/iconos/header/heavy-snow.png",
         "Rainy": "/pronostico/iconos/header/lluvioso-con-sol.png",
         "Torrential rain": "/pronostico/iconos/header/fuerte-lluvia.png",
         "Patchy rain possible": "/pronostico/iconos/header/lluvioso-con-sol.png",
@@ -128,6 +134,9 @@ function conditionData(data) {
         "Heavy rain": "/pronostico/iconos/header/fuerte-lluvia.png",
         "Mist": "/pronostico/iconos/header/neblina.png",
         "Freezing fog": "/pronostico/iconos/header/neblina-helada.png",
+        "Patchy light rain with thunder": "/pronostico/iconos/header/lluvioso.png",
+        "Moderate or heavy rain shower": "/pronostico/iconos/header/lluvioso.png",
+        "Patchy heavy snow": "/pronostico/iconos/header/heavy-snow.png",
         "Snowy": "/pronostico/iconos/header/moderate-snow.png",
         "Light snow": "/pronostico/iconos/header/light-snow.png",
         "Heavy snow": "/pronostico/iconos/header/heavy-snow.png",
@@ -218,14 +227,15 @@ function showWeather(data) {
 
     if (pais.value === '' && screenWidth > 768) {
         result.style.display = "none"
-    }else{
+    } else {
         Logo.style.display = "none"
         result.style.display = "flex"
     }
-    
-    if(pais.value === '' && screenWidth < 768){
+
+    if (pais.value === '' && screenWidth < 768) {
         contenedor.style.background = "transparent"
-    }else if(screenWidth < 768){
+        header.style.background = "transparent"
+    } else if (screenWidth < 768) {
         header.style.background = "rgba(29, 53, 87, 0.5)"
         contenedor.style.background = "rgba(29, 53, 87, 0.5)"
     }
@@ -237,50 +247,44 @@ function showError(message) {
     error.style.display = "flex"
 }
 
-function cambiaFondo(data) {
-    if (data.forecast.forecastday[0].day.daily_will_it_rain > 0 && screenWidth > 768) {
-        document.body.style.backgroundImage = "url('/pronostico/lluvioso.jpg')"
-        return;
-    }else if(data.forecast.forecastday[0].day.daily_will_it_rain > 0 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/lluvioso-celular.jpg')"
-        return;
+function cambiaFondo(data, screenWidth) {
+    let backgroundImage = "./pronostico/principal.jpg";
+
+    switch (true) {
+        case data.forecast.forecastday[0].day.daily_will_it_rain > 0 && data.current.condition.text != "Partly cloudy":
+            backgroundImage = screenWidth < 768 ? "/pronostico/lluvioso-celular.jpg" : "/pronostico/lluvioso.jpg";
+            break;
+        case data.current.temp_c <= 2:
+            backgroundImage = screenWidth < 768 ? "/pronostico/frío-celular.jpg" : "/pronostico/nevado.jpg";
+            break;
+        case data.current.temp_c <= 10 && data.forecast.forecastday[0].day.daily_will_it_rain < 1:
+            backgroundImage = screenWidth < 768 ? "/pronostico/helada-celular.jpg" : "/pronostico/frío.jpg";
+            break;
+        case data.current.condition.text === "Partly cloudy":
+            backgroundImage = screenWidth < 768 ? "/pronostico/frío.jpg" : "/pronostico/parcialmente-nublado.jpg";
+            break;
+        case data.current.temp_c > 10 && data.current.temp_c < 18:
+            backgroundImage = screenWidth < 768 ? "/pronostico/fresco-celular.jpg" : "/pronostico/frío.jpg";
+            break;
+        case data.current.temp_c >= 18 && data.current.temp_c < 25:
+            backgroundImage = screenWidth < 768 ? "/pronostico/soleado-celular.jpg" : "/pronostico/soleado.jpg";
+            break;
+        case data.current.temp_c >= 25:
+            backgroundImage = screenWidth < 768 ? "/pronostico/caluroso-celular.jpg" : "/pronostico/caluroso.jpg";
+            break;
+        default:
+            // En caso de que ninguna condición coincida, puedes asignar una imagen predeterminada aquí.
+            backgroundImage = "/pronostico/imagen-predeterminada.jpg";
+            break;
     }
-    if (data.current.temp_c <= 2 && screenWidth > 768) {
-        document.body.style.backgroundImage = "url('/pronostico/bajo-cero.jpg')"
-        return;
-    }else if(data.current.temp_c <= 2 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/frío-celular.jpg')"
-        return;
-    }
-    if (data.current.temp_c <= 10 && data.forecast.forecastday[0].day.daily_will_it_rain < 1 && screenWidth > 768) {
-        document.body.style.backgroundImage = "url('/pronostico/helada.jpg')"
-        return;
-    }else if(data.current.temp_c <= 10 && data.forecast.forecastday[0].day.daily_will_it_rain < 1 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/helada-celular.jpg')"
-        return;
-    }
-    if (data.current.temp_c > 10 && data.current.temp_c < 18 && screenWidth > 768) {
-        document.body.style.backgroundImage = "url('/pronostico/frío.jpg')"
-        return;
-    }else if(data.current.temp_c > 10 && data.current.temp_c < 18 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/fresco-celular.jpg')"
-        return;
-    }
-    if (data.current.temp_c >= 18 && data.current.temp_c < 25 && screenWidth > 768) {
-        document.body.style.backgroundImage = "url('/pronostico/soleado.jpg')"
-        return;
-    }else if(data.current.temp_c >= 18 && data.current.temp_c < 25 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/soleado-celular.jpg')"
-        return;
-    }
-    if (data.current.temp_c >= 25 && screenWidth > 768) {
-        document.body.style.backgroundImage = "url('/pronostico/caluroso.jpg')"
-        return;
-    }else if(data.current.temp_c >= 25 && screenWidth < 768){
-        document.body.style.backgroundImage = "url('/pronostico/caluroso-celular.jpg')"
-        return;
-    }
+
+    document.body.style.backgroundImage = `url('${backgroundImage}')`;
 }
+
+
+
+
+
 
 
 
