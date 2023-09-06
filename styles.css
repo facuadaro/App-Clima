@@ -21,6 +21,7 @@ body {
     text-align: center;
     height: auto;
     background-size: cover;
+    background-position: center;
 }
 
 header {
@@ -95,7 +96,7 @@ header a {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .forecastwind img {
@@ -155,13 +156,17 @@ header a {
 }
 
 .icono-datos {
-    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
 }
 
 .icono-datos img {
     object-fit: fill;
     width: 40px;
 }
+
+
 
 #text-condition {
     font-size: large;
@@ -272,6 +277,18 @@ header a {
     width: 100%;
 }
 
+
+.day-gral {
+    display: flex;   
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    margin: 10px 0;
+}
+
 .day {
     display: flex;
     padding: 10px 10px;
@@ -279,11 +296,28 @@ header a {
     width: 100%;
     height: 100%;
     text-align: center;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 3px;
-    margin: 10px 7px;
+    /* border-style: solid; */
+    /* margin: 10px 7px; */
     font-size: 16px;
+}
+
+.extension {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(53, 63, 74, 0.654);
+}
+
+.extension:hover {
+    background: rgba(33, 38, 43, 0.654);
+    cursor: pointer;
+}
+
+
+.flecha {
+    width: 20px;
+    transform: rotate(90deg);
+    margin: 0 0 3px 0;
 }
 
 .km-resp {
@@ -348,6 +382,8 @@ header a {
     opacity: 0;
     animation: manitoAparece 5s infinite;
 }
+
+
 
 @keyframes aparicionDerecha {
     0%{
