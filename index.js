@@ -49,6 +49,7 @@ function callAPI(city) {
                 showWeather(data)
                 cambiaFondo(data)
                 conditionData(data)
+                desplegarHoras()
             }
         })
 }
@@ -77,6 +78,7 @@ const condicionesTraducidas = {
     "Cold": "Frío",
     "Warm": "Cálido",
     "Hot": "Caluroso",
+    "Thundery outbreaks possible": "Posibles estallidos tormentosos",
     "Dry": "Seco",
     "Humid": "Humedo",
     "Patchy light snow": "Nieve ligera irregular",
@@ -121,6 +123,7 @@ function conditionData(data) {
         "Hot": "",
         "Dry": "",
         "Humid": "",
+        "Thundery outbreaks possible": "/pronostico/iconos/header/fuerte-lluvia.png",
         "Patchy light snow": "/pronostico/iconos/header/moderate-snow.png",
         "Light freezing rain": "/pronostico/iconos/header/moderate-snow.png",
         "Patchy moderate snow": "/pronostico/iconos/header/moderate-snow.png",
@@ -281,8 +284,20 @@ function cambiaFondo(data, screenWidth) {
     document.body.style.backgroundImage = `url('${backgroundImage}')`;
 }
 
+function desplegarHoras() {
+    const barraDesplegable = document.querySelectorAll(".extension");
+    const info = document.querySelectorAll(".hours");
 
-
+    barraDesplegable.addEventListener('click', () => {
+        if (info.style.display === 'none' || info.style.display === '') {
+            info.style.display = 'flex';
+            info.style.height = '100%';
+        } else {
+            info.style.display = 'none';
+            info.style.height = '0';
+        }
+    });
+}
 
 
 
